@@ -21,25 +21,40 @@
     /* TABLAS */
     table { width: 100%; border-collapse: collapse; margin-top: 20px; }
     th, td { border: 1px solid #ccc; padding: 12px; text-align: center; font-size: 14px; }
-    th { background: #f89d1c; color: white; } /* Color naranja del encabezado de tu imagen */
+    th { background: #f89d1c; color: white; }
 
-    /* COLORES DE MATERIAS (Basados en tu imagen) */
-    .cal-dif { background-color: #a9d18e; } /* Verde */
-    .mecanica { background-color: #9bc2e6; } /* Azul */
-    .lab-fluidos { background-color: #ffd966; } /* Amarillo */
-    .geo-yac { background-color: #f4b183; } /* Naranja suave */
-    .termo-electro { background-color: #e6b8af; } /* Rosa/Rojizo */
-    .literatura { background-color: #ccc0da; } /* Morado */
-    .hora-col { background-color: #ffc000; font-weight: bold; }
+    /* COLORES DE MATERIAS */
+    .cal-dif { background-color: #a9d18e !important; } 
+    .mecanica { background-color: #9bc2e6 !important; } 
+    .lab-fluidos { background-color: #ffd966 !important; } 
+    .geo-yac { background-color: #f4b183 !important; } 
+    .termo-electro { background-color: #e6b8af !important; } 
+    .literatura { background-color: #ccc0da !important; } 
+    .hora-col { background-color: #ffc000 !important; font-weight: bold; width: 120px; }
 
     /* BOTONES */
-    .btn { width: 100%; padding: 14px; border: none; border-radius: 6px; cursor: pointer; font-size: 16px; margin-top: 10px; }
-    .btn-login { background: #b5121b; color: white; }
+    .btn { padding: 14px; border: none; border-radius: 6px; cursor: pointer; font-size: 16px; margin-top: 10px; transition: 0.3s; }
+    .btn-login { background: #b5121b; color: white; width: 100%; }
     .btn-guardar { background: #28a745; color: white; width: auto; padding: 12px 30px; }
+    .btn-pdf { background: #dc3545; color: white; width: auto; padding: 12px 30px; margin-left: 10px; }
+    .btn-regresar { background: #666; color: white; width: auto; padding: 12px 30px; }
+    
+    .btn:hover { opacity: 0.8; }
 
     .input-group { display: flex; align-items: center; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 6px; }
     .input-group span { padding: 10px; background: #eee; }
     .input-group input { border: none; padding: 10px; width: 100%; outline: none; }
+
+    .botones-finales { text-align: center; margin-top: 25px; }
+
+    /* CONFIGURACIÓN PARA IMPRESIÓN / PDF */
+    @media print {
+      .header, .btn, .botones-finales, h2, p { display: none !important; }
+      .container { box-shadow: none; margin: 0; width: 100%; padding: 0; }
+      body { background: white; }
+      table { width: 100%; border: 1px solid black; }
+      th, td { border: 1px solid black; -webkit-print-color-adjust: exact; }
+    }
   </style>
 </head>
 <body>
@@ -51,7 +66,7 @@
 
   <div id="login-section" class="container login-container">
     <h2 style="text-align:center; color:#b5121b;">Iniciar Sesión</h2>
-    <div class="input-group"><span>👤</span><input type="text" id="user" placeholder="Usuario"></div>
+    <div class="input-group"><span>👤</span><input type="text" id="user" placeholder="No. de Cuenta"></div>
     <div class="input-group"><span>🔒</span><input type="password" id="pass" placeholder="Contraseña"></div>
     <button class="btn btn-login" onclick="entrar()">Ingresar</button>
   </div>
@@ -59,7 +74,7 @@
   <div id="selection-section" class="container hidden">
     <h2>Selección de Materias</h2>
     <table>
-      <tr><th>Seleccionar</th><th>Materia</th><th>Días Sugeridos</th></tr>
+      <tr><th>Seleccionar</th><th>Materia</th><th>Días y Horas</th></tr>
       <tr><td><input type="checkbox" id="m1"></td><td>Cálculo Diferencial</td><td>Lun (07-09)</td></tr>
       <tr><td><input type="checkbox" id="m2"></td><td>Mecánica</td><td>Mar-Jue-Vie (07-09)</td></tr>
       <tr><td><input type="checkbox" id="m3"></td><td>Laboratorio de Mecánica de Fluidos 1</td><td>Mar (11-13)</td></tr>
@@ -68,12 +83,14 @@
       <tr><td><input type="checkbox" id="m6"></td><td>Literatura 1</td><td>Vie (13-15)</td></tr>
     </table>
     <br>
-    <button class="btn btn-guardar" onclick="generarHorario()">Guardar y Generar Horario</button>
+    <div style="text-align: right;">
+        <button class="btn btn-guardar" onclick="generarHorario()">Generar Horario</button>
+    </div>
   </div>
 
   <div id="horario-section" class="container hidden">
-    <h2 style="text-align:center;">Horario Generado</h2>
-    <table>
+    <h2 style="text-align:center;">Horario de Clases Semanal</h2>
+    <table id="tabla-horario">
       <thead>
         <tr>
           <th style="background:#ffc000">Hora</th>
@@ -85,79 +102,61 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td class="hora-col">07:00 a 09:00</td>
-          <td id="cell-1-1"></td>
-          <td id="cell-1-2"></td>
-          <td id="cell-1-3"></td>
-          <td id="cell-1-4"></td>
-          <td id="cell-1-5"></td>
-        </tr>
-        <tr>
-          <td class="hora-col">09:00 a 11:00</td>
-          <td></td><td></td><td></td><td></td><td></td>
-        </tr>
-        <tr>
-          <td class="hora-col">11:00 a 13:00</td>
-          <td id="cell-3-1"></td>
-          <td id="cell-3-2"></td>
-          <td id="cell-3-3"></td>
-          <td id="cell-3-4"></td>
-          <td id="cell-3-5"></td>
-        </tr>
-        <tr>
-          <td class="hora-col">13:00 a 15:00</td>
-          <td id="cell-4-1"></td>
-          <td id="cell-4-2"></td>
-          <td id="cell-4-3"></td>
-          <td id="cell-4-4"></td>
-          <td id="cell-4-5"></td>
-        </tr>
+        <tr><td class="hora-col">07:00 a 09:00</td><td id="cell-1-1"></td><td id="cell-1-2"></td><td id="cell-1-3"></td><td id="cell-1-4"></td><td id="cell-1-5"></td></tr>
+        <tr><td class="hora-col">09:00 a 11:00</td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td class="hora-col">11:00 a 13:00</td><td id="cell-3-1"></td><td id="cell-3-2"></td><td id="cell-3-3"></td><td id="cell-3-4"></td><td id="cell-3-5"></td></tr>
+        <tr><td class="hora-col">13:00 a 15:00</td><td id="cell-4-1"></td><td id="cell-4-2"></td><td id="cell-4-3"></td><td id="cell-4-4"></td><td id="cell-4-5"></td></tr>
       </tbody>
     </table>
-    <button class="btn" style="background:#666; color:white; width:200px" onclick="location.reload()">Regresar</button>
+
+    <div class="botones-finales">
+        <button class="btn btn-regresar" onclick="regresar()">Regresar</button>
+        <button class="btn btn-pdf" onclick="descargarPDF()">Descargar PDF</button>
+    </div>
   </div>
 
   <script>
     function entrar() {
-      if(document.getElementById('user').value !== "") {
+      if(document.getElementById('user').value !== "" && document.getElementById('pass').value !== "") {
         document.getElementById('login-section').classList.add('hidden');
         document.getElementById('selection-section').classList.remove('hidden');
-      }
+      } else { alert("Ingresa tus datos."); }
     }
 
     function generarHorario() {
-      // Limpiar celdas antes de llenar
+      // Limpiar
       for(let i=1; i<=4; i++) { for(let j=1; j<=5; j++) { 
         let cell = document.getElementById(`cell-${i}-${j}`);
         if(cell) { cell.innerText = ""; cell.className = ""; }
       }}
 
-      // Llenado lógico basado en selección
-      if(document.getElementById('m1').checked) {
-        let c = document.getElementById('cell-1-1'); c.innerText = "Cálculo Diferencial"; c.className = "cal-dif";
-      }
+      // Llenar
+      if(document.getElementById('m1').checked) { document.getElementById('cell-1-1').innerText = "Cálculo Diferencial"; document.getElementById('cell-1-1').className = "cal-dif"; }
       if(document.getElementById('m2').checked) {
-        let d2 = document.getElementById('cell-1-2'); d2.innerText = "Mecánica"; d2.className = "mecanica";
-        let d4 = document.getElementById('cell-1-4'); d4.innerText = "Mecánica"; d4.className = "mecanica";
-        let d5 = document.getElementById('cell-1-5'); d5.innerText = "Mecánica"; d5.className = "mecanica";
+        document.getElementById('cell-1-2').innerText = "Mecánica"; document.getElementById('cell-1-2').className = "mecanica";
+        document.getElementById('cell-1-4').innerText = "Mecánica"; document.getElementById('cell-1-4').className = "mecanica";
+        document.getElementById('cell-1-5').innerText = "Mecánica"; document.getElementById('cell-1-5').className = "mecanica";
       }
-      if(document.getElementById('m3').checked) {
-        let c = document.getElementById('cell-3-2'); c.innerText = "Lab. Mecánica Fluidos 1"; c.className = "lab-fluidos";
-      }
-      if(document.getElementById('m4').checked) {
-        let c = document.getElementById('cell-4-1'); c.innerText = "Geología de Yacimientos"; c.className = "geo-yac";
-      }
+      if(document.getElementById('m3').checked) { document.getElementById('cell-3-2').innerText = "Lab. Mecánica Fluidos 1"; document.getElementById('cell-3-2').className = "lab-fluidos"; }
+      if(document.getElementById('m4').checked) { document.getElementById('cell-4-1').innerText = "Geología de Yacimientos"; document.getElementById('cell-4-1').className = "geo-yac"; }
       if(document.getElementById('m5').checked) {
-        let c3 = document.getElementById('cell-4-3'); c3.innerText = "Termo y Electromag. 2"; c3.className = "termo-electro";
-        let c4 = document.getElementById('cell-4-4'); c4.innerText = "Termo y Electromag. 2"; c4.className = "termo-electro";
+        document.getElementById('cell-4-3').innerText = "Termo y Electromag. 2"; document.getElementById('cell-4-3').className = "termo-electro";
+        document.getElementById('cell-4-4').innerText = "Termo y Electromag. 2"; document.getElementById('cell-4-4').className = "termo-electro";
       }
-      if(document.getElementById('m6').checked) {
-        let c = document.getElementById('cell-4-5'); c.innerText = "Literatura 1"; c.className = "literatura";
-      }
+      if(document.getElementById('m6').checked) { document.getElementById('cell-4-5').innerText = "Literatura 1"; document.getElementById('cell-4-5').className = "literatura"; }
 
       document.getElementById('selection-section').classList.add('hidden');
       document.getElementById('horario-section').classList.remove('hidden');
+    }
+
+    function regresar() {
+        document.getElementById('horario-section').classList.add('hidden');
+        document.getElementById('selection-section').classList.remove('hidden');
+    }
+
+    function descargarPDF() {
+        alert("Tu información se guardó correctamente");
+        window.print(); // Esto abre la ventana para guardar como PDF
     }
   </script>
 </body>
