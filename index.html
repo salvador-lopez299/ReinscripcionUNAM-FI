@@ -28,6 +28,7 @@
     /* COLORES MATERIAS */
     .cal-dif { background-color: #a9d18e !important; } 
     .mecanica { background-color: #9bc2e6 !important; } 
+    .lab-fluidos { background-color: #ffd966 !important; } 
     .geo-yac { background-color: #f4b183 !important; } 
     .termo-electro { background-color: #e6b8af !important; } 
     .literatura { background-color: #ccc0da !important; } 
@@ -75,6 +76,10 @@
       <tr style="background:#e7f3ff"><td><input type="radio" name="mec" id="m2_2"></td><td>Mecánica (G2)</td><td>Mar-Jue (11-13)</td></tr>
       <tr style="background:#e7f3ff"><td><input type="radio" name="mec" id="m2_3"></td><td>Mecánica (G3)</td><td>Mar-Jue (13-15)</td></tr>
       <tr style="background:#e7f3ff"><td><input type="radio" name="mec" id="m2_4"></td><td>Mecánica (G4)</td><td>Mie-Vie (19-21)</td></tr>
+
+      <tr style="background:#fffbe6"><td><input type="radio" name="lab" id="m3_1"></td><td>Lab. Mecánica de Fluidos 1 (G1)</td><td>Lunes (07-09)</td></tr>
+      <tr style="background:#fffbe6"><td><input type="radio" name="lab" id="m3_2"></td><td>Lab. Mecánica de Fluidos 1 (G2)</td><td>Miércoles (07-09)</td></tr>
+      <tr style="background:#fffbe6"><td><input type="radio" name="lab" id="m3_3"></td><td>Lab. Mecánica de Fluidos 1 (G3)</td><td>Jueves (07-09)</td></tr>
 
       <tr style="background:#fff4e5"><td><input type="radio" name="geo" id="m4_1"></td><td>Geología de Yacimientos (G1)</td><td>Mar-Jue (13-15)</td></tr>
       <tr style="background:#fff4e5"><td><input type="radio" name="geo" id="m4_2"></td><td>Geología de Yacimientos (G2)</td><td>Mar-Jue (14-16)</td></tr>
@@ -161,6 +166,11 @@
       if(document.getElementById('m2_2').checked) { fill("11-2", "Mecánica", "mecanica"); fill("11-4", "Mecánica", "mecanica"); }
       if(document.getElementById('m2_3').checked) { fill("13-2", "Mecánica", "mecanica"); fill("13-4", "Mecánica", "mecanica"); }
       if(document.getElementById('m2_4').checked) { fill("19-3", "Mecánica", "mecanica"); fill("19-5", "Mecánica", "mecanica"); }
+
+      // LABORATORIO MECÁNICA (NUEVA LÓGICA)
+      if(document.getElementById('m3_1').checked) { fill("07-1", "Lab. Mecánica", "lab-fluidos"); }
+      if(document.getElementById('m3_2').checked) { fill("07-3", "Lab. Mecánica", "lab-fluidos"); }
+      if(document.getElementById('m3_3').checked) { fill("07-4", "Lab. Mecánica", "lab-fluidos"); }
 
       // GEOLOGÍA
       if(document.getElementById('m4_1').checked) { fill("13-2", "Geología Yac.", "geo-yac"); fill("13-4", "Geología Yac.", "geo-yac"); }
