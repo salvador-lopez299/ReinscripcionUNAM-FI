@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>SIINFI - Comprobante 2026-2</title>
+  <title>SIINFI - Comprobante 2027-1</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <style>
@@ -26,12 +26,12 @@
     .horario th { background: #f89d1c; color: white; }
 
     /* COLORES MATERIAS */
-    .cal-dif { background-color: #a9d18e !important; } 
-    .mecanica { background-color: #9bc2e6 !important; } 
-    .lab-fluidos { background-color: #ffd966 !important; } 
-    .geo-yac { background-color: #f4b183 !important; } 
-    .termo-electro { background-color: #e6b8af !important; } 
-    .literatura { background-color: #ccc0da !important; } 
+    .estadistica { background-color: #a9d18e !important; } 
+    .prog-avanzada { background-color: #9bc2e6 !important; } 
+    .mec-yacimientos { background-color: #ffd966 !important; } 
+    .geo-geoquimica { background-color: #f4b183 !important; } 
+    .lit-hispano { background-color: #ccc0da !important; } 
+    .mec-fluidos { background-color: #e6b8af !important; } 
     .hora-col { background-color: #ffc000 !important; font-weight: bold; width: 110px; }
 
     /* BOTONES */
@@ -39,6 +39,7 @@
     .btn-login { background: #b5121b; color: white; width: 100%; }
     .btn-guardar { background: #28a745; color: white; }
     .btn-pdf { background: #dc3545; color: white; }
+    .btn-regresar { background: #6c757d; color: white; }
     
     .page-break { page-break-before: always; }
 
@@ -65,33 +66,16 @@
   </div>
 
   <div id="selection-section" class="container hidden no-print">
-    <h2>Selección de Asignaturas 2026-2</h2>
+    <h2>Selección de Asignaturas 2027-1</h2>
     <table class="horario" style="color: black;">
       <tr><th>Seleccionar</th><th>Materia</th><th>Horarios</th></tr>
       
-      <tr style="background:#f0f9eb"><td><input type="radio" name="calc" id="m1_1"></td><td>Cálculo Diferencial (G1)</td><td>Lun-Mie (07-09)</td></tr>
-      <tr style="background:#f0f9eb"><td><input type="radio" name="calc" id="m1_2"></td><td>Cálculo Diferencial (G2)</td><td>Lun-Vie (11-13)</td></tr>
-      
-      <tr style="background:#e7f3ff"><td><input type="radio" name="mec" id="m2_1"></td><td>Mecánica (G1)</td><td>Mar-Jue-Vie (07-09)</td></tr>
-      <tr style="background:#e7f3ff"><td><input type="radio" name="mec" id="m2_2"></td><td>Mecánica (G2)</td><td>Mar-Jue (11-13)</td></tr>
-      <tr style="background:#e7f3ff"><td><input type="radio" name="mec" id="m2_3"></td><td>Mecánica (G3)</td><td>Mar-Jue (13-15)</td></tr>
-      <tr style="background:#e7f3ff"><td><input type="radio" name="mec" id="m2_4"></td><td>Mecánica (G4)</td><td>Mie-Vie (19-21)</td></tr>
-
-      <tr style="background:#fffbe6"><td><input type="radio" name="lab" id="m3_1"></td><td>Lab. Mecánica de Fluidos 1 (G1)</td><td>Lunes (07-09)</td></tr>
-      <tr style="background:#fffbe6"><td><input type="radio" name="lab" id="m3_2"></td><td>Lab. Mecánica de Fluidos 1 (G2)</td><td>Miércoles (07-09)</td></tr>
-      <tr style="background:#fffbe6"><td><input type="radio" name="lab" id="m3_3"></td><td>Lab. Mecánica de Fluidos 1 (G3)</td><td>Jueves (07-09)</td></tr>
-
-      <tr style="background:#fff4e5"><td><input type="radio" name="geo" id="m4_1"></td><td>Geología de Yacimientos (G1)</td><td>Mar-Jue (13-15)</td></tr>
-      <tr style="background:#fff4e5"><td><input type="radio" name="geo" id="m4_2"></td><td>Geología de Yacimientos (G2)</td><td>Mar-Jue (14-16)</td></tr>
-      <tr style="background:#fff4e5"><td><input type="radio" name="geo" id="m4_3"></td><td>Geología de Yacimientos (G3)</td><td>Lun-Mie (15-17)</td></tr>
-
-      <tr style="background:#f9f1f0"><td><input type="radio" name="termo" id="m5_1"></td><td>Termodinámica 2 (G1)</td><td>Mar-Jue (11-13)</td></tr>
-      <tr style="background:#f9f1f0"><td><input type="radio" name="termo" id="m5_2"></td><td>Termodinámica 2 (G2)</td><td>Mar-Jue (09-11)</td></tr>
-      <tr style="background:#f9f1f0"><td><input type="radio" name="termo" id="m5_3"></td><td>Termodinámica 2 (G3)</td><td>Mar-Jue (17-19)</td></tr>
-
-      <tr style="background:#f3f0f9"><td><input type="radio" name="lit" id="m6_1"></td><td>Literatura 1 (G1)</td><td>Vie (13-17)</td></tr>
-      <tr style="background:#f3f0f9"><td><input type="radio" name="lit" id="m6_2"></td><td>Literatura 1 (G2)</td><td>Lun-Vie (09-11)</td></tr>
-      <tr style="background:#f3f0f9"><td><input type="radio" name="lit" id="m6_3"></td><td>Literatura 1 (G3)</td><td>Lun-Vie (15-17)</td></tr>
+      <tr style="background:#f0f9eb"><td><input type="checkbox" id="m1_1"></td><td>Estadística</td><td>Lun-Mie (07-09)</td></tr>
+      <tr style="background:#e7f3ff"><td><input type="checkbox" id="m2_1"></td><td>Programación Avanzada</td><td>Lun-Mie (09-11)</td></tr>
+      <tr style="background:#fffbe6"><td><input type="checkbox" id="m3_1"></td><td>Mecánica de Yacimientos</td><td>Lun-Mie (11-13)</td></tr>
+      <tr style="background:#fff4e5"><td><input type="checkbox" id="m4_1"></td><td>Geología y Geoquímica</td><td>Mar-Jue (13-15)</td></tr>
+      <tr style="background:#f3f0f9"><td><input type="checkbox" id="m5_1"></td><td>Literatura Hispanoamericana Contemporánea</td><td>Lun-Mie (13-15)</td></tr>
+      <tr style="background:#f9f1f0"><td><input type="checkbox" id="m6_1"></td><td>Mecánica de Fluidos</td><td>Mar-Jue (11-13)</td></tr>
     </table>
     <br>
     <button class="btn btn-guardar" onclick="mostrarComprobante()">Generar Comprobante Final</button>
@@ -103,15 +87,15 @@
       <div class="doc-title">
         <h3>UNIVERSIDAD NACIONAL AUTÓNOMA DE MÉXICO</h3>
         <h3>FACULTAD DE INGENIERÍA</h3>
-        <p><strong>COMPROBANTE DE INSCRIPCIÓN 2026-2</strong></p>
+        <p><strong>COMPROBANTE DE INSCRIPCIÓN 2027-1</strong></p>
       </div>
       <table class="info-table">
         <tr><th>CUENTA</th><th>NOMBRE</th><th>PERIODO</th></tr>
-        <tr><td id="res-cuenta">000000000</td><td>LÓPEZ ALEJANDREZ SALVADOR</td><td>2026-2</td></tr>
+        <tr><td id="res-cuenta">000000000</td><td>LÓPEZ ALEJANDREZ SALVADOR</td><td>2027-1</td></tr>
         <tr><th>INGRESO</th><th>CARRERA</th><th>PLANTEL</th></tr>
         <tr><td>2025-1</td><td>INGENIERÍA PETROLERA</td><td>0011</td></tr>
       </table>
-      <p style="font-size: 10px; margin-top:15px;">Este comprobante ampara la inscripción registrada en la fecha y etapa indicadas. Semestre lectivo: 03 de febrero al 30 de mayo de 2026.</p>
+      <p style="font-size: 10px; margin-top:15px;">Este comprobante ampara la inscripción registrada en la fecha y etapa indicadas. Semestre lectivo: 2027-1.</p>
     </div>
 
     <div class="page-break">
@@ -122,13 +106,9 @@
         </thead>
         <tbody>
           <tr><td class="hora-col">07:00-09:00</td><td id="c-07-1"></td><td id="c-07-2"></td><td id="c-07-3"></td><td id="c-07-4"></td><td id="c-07-5"></td></tr>
-          <tr><td class="hora-col">09:00-11:00</td><td id="c-09-1"></td><td id="c-09-2"></td><td></td><td id="c-09-4"></td><td id="c-09-5"></td></tr>
+          <tr><td class="hora-col">09:00-11:00</td><td id="c-09-1"></td><td id="c-09-2"></td><td id="c-09-3"></td><td id="c-09-4"></td><td id="c-09-5"></td></tr>
           <tr><td class="hora-col">11:00-13:00</td><td id="c-11-1"></td><td id="c-11-2"></td><td id="c-11-3"></td><td id="c-11-4"></td><td id="c-11-5"></td></tr>
           <tr><td class="hora-col">13:00-15:00</td><td id="c-13-1"></td><td id="c-13-2"></td><td id="c-13-3"></td><td id="c-13-4"></td><td id="c-13-5"></td></tr>
-          <tr><td class="hora-col">14:00-16:00</td><td></td><td id="c-14-2"></td><td></td><td id="c-14-4"></td><td></td></tr>
-          <tr><td class="hora-col">15:00-17:00</td><td id="c-15-1"></td><td></td><td id="c-15-3"></td><td></td><td id="c-15-5"></td></tr>
-          <tr><td class="hora-col">17:00-19:00</td><td></td><td id="c-17-2"></td><td></td><td id="c-17-4"></td><td></td></tr>
-          <tr><td class="hora-col">19:00-21:00</td><td></td><td></td><td id="c-19-3"></td><td></td><td id="c-19-5"></td></tr>
         </tbody>
       </table>
     </div>
@@ -157,35 +137,41 @@
     function mostrarComprobante() {
       document.querySelectorAll("#tabla-horario td[id]").forEach(c => { c.innerText = ""; c.className = ""; });
 
-      // CÁLCULO
-      if(document.getElementById('m1_1').checked) { fill("07-1", "Cálculo Dif.", "cal-dif"); fill("07-3", "Cálculo Dif.", "cal-dif"); }
-      if(document.getElementById('m1_2').checked) { fill("11-1", "Cálculo Dif.", "cal-dif"); fill("11-5", "Cálculo Dif.", "cal-dif"); }
-      
-      // MECÁNICA
-      if(document.getElementById('m2_1').checked) { fill("07-2", "Mecánica", "mecanica"); fill("07-4", "Mecánica", "mecanica"); fill("07-5", "Mecánica", "mecanica"); }
-      if(document.getElementById('m2_2').checked) { fill("11-2", "Mecánica", "mecanica"); fill("11-4", "Mecánica", "mecanica"); }
-      if(document.getElementById('m2_3').checked) { fill("13-2", "Mecánica", "mecanica"); fill("13-4", "Mecánica", "mecanica"); }
-      if(document.getElementById('m2_4').checked) { fill("19-3", "Mecánica", "mecanica"); fill("19-5", "Mecánica", "mecanica"); }
+      // ESTADÍSTICA (Lun-Mié 07:00-09:00)
+      if(document.getElementById('m1_1').checked) { 
+        fill("07-1", "Estadística", "estadistica"); 
+        fill("07-3", "Estadística", "estadistica"); 
+      }
 
-      // LABORATORIO MECÁNICA (NUEVA LÓGICA)
-      if(document.getElementById('m3_1').checked) { fill("07-1", "Lab. Mecánica", "lab-fluidos"); }
-      if(document.getElementById('m3_2').checked) { fill("07-3", "Lab. Mecánica", "lab-fluidos"); }
-      if(document.getElementById('m3_3').checked) { fill("07-4", "Lab. Mecánica", "lab-fluidos"); }
+      // PROGRAMACIÓN AVANZADA (Lun-Mié 09:00-11:00)
+      if(document.getElementById('m2_1').checked) { 
+        fill("09-1", "Prog. Avanzada", "prog-avanzada"); 
+        fill("09-3", "Prog. Avanzada", "prog-avanzada"); 
+      }
 
-      // GEOLOGÍA
-      if(document.getElementById('m4_1').checked) { fill("13-2", "Geología Yac.", "geo-yac"); fill("13-4", "Geología Yac.", "geo-yac"); }
-      if(document.getElementById('m4_2').checked) { fill("14-2", "Geología Yac.", "geo-yac"); fill("14-4", "Geología Yac.", "geo-yac"); }
-      if(document.getElementById('m4_3').checked) { fill("15-1", "Geología Yac.", "geo-yac"); fill("15-3", "Geología Yac.", "geo-yac"); }
+      // MECÁNICA DE YACIMIENTOS (Lun-Mié 11:00-13:00)
+      if(document.getElementById('m3_1').checked) { 
+        fill("11-1", "Mec. Yacimientos", "mec-yacimientos"); 
+        fill("11-3", "Mec. Yacimientos", "mec-yacimientos"); 
+      }
 
-      // TERMO
-      if(document.getElementById('m5_1').checked) { fill("11-2", "Termo 2", "termo-electro"); fill("11-4", "Termo 2", "termo-electro"); }
-      if(document.getElementById('m5_2').checked) { fill("09-2", "Termo 2", "termo-electro"); fill("09-4", "Termo 2", "termo-electro"); }
-      if(document.getElementById('m5_3').checked) { fill("17-2", "Termo 2", "termo-electro"); fill("17-4", "Termo 2", "termo-electro"); }
+      // GEOLOGÍA Y GEOQUÍMICA (Mar-Jue 13:00-15:00)
+      if(document.getElementById('m4_1').checked) { 
+        fill("13-2", "Geo. y Geoquímica", "geo-geoquimica"); 
+        fill("13-4", "Geo. y Geoquímica", "geo-geoquimica"); 
+      }
 
-      // LITERATURA
-      if(document.getElementById('m6_1').checked) { fill("13-5", "Literatura", "literatura"); fill("15-5", "Literatura", "literatura"); }
-      if(document.getElementById('m6_2').checked) { fill("09-1", "Literatura", "literatura"); fill("09-5", "Literatura", "literatura"); }
-      if(document.getElementById('m6_3').checked) { fill("15-1", "Literatura", "literatura"); fill("15-5", "Literatura", "literatura"); }
+      // LITERATURA HISPANOAMERICANA CONTEMPORÁNEA (Lun-Mié 13:00-15:00)
+      if(document.getElementById('m5_1').checked) { 
+        fill("13-1", "Lit. Hispanoamericana", "lit-hispano"); 
+        fill("13-3", "Lit. Hispanoamericana", "lit-hispano"); 
+      }
+
+      // MECÁNICA DE FLUIDOS (Mar-Jue 11:00-13:00)
+      if(document.getElementById('m6_1').checked) { 
+        fill("11-2", "Mec. Fluidos", "mec-fluidos"); 
+        fill("11-4", "Mec. Fluidos", "mec-fluidos"); 
+      }
 
       document.getElementById('selection-section').classList.add('hidden');
       document.getElementById('comprobante-section').classList.remove('hidden');
